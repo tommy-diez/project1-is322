@@ -10,7 +10,6 @@ body {
     min-height: 100%;
     margin: auto;
     display: flex;
-
 }
 
 .navigation-bar {
@@ -96,14 +95,7 @@ body {
         width: calc(100% - 50px);
     }
 
-    .navigation-bar {
-        min-height: auto;
-        width: 100%;
-        flex: 0 0 15px;
-
-    }
-
-    .content-container {
+    .product-container {
         width: calc(100% - 50px);
     }
 
