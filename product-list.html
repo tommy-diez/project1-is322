@@ -19,8 +19,30 @@
             <a class="navigation-links"><img alt="logo" src="images/logo.png"></a>
             <a class="navigation-links" href="">Home</a>
             <a class="navigation-links" href="">Shop</a>
+            <form>
+            <label for="sortBy">Order By</label>
+            <select id="sortBy" name="sortBy">
+                <option value="name">Name(A-Z)</option>
+                <option value="price">Price(low-high)</option>
+            </select>
+            <br>
+            <label for="inStock">Show only in stock?</label>
+            <select id="inStock" name="inStock">
+                <option value="true">No</option>
+                <option value="false">Yes</option>
+            </select>
+            <br>
+            <label for="category">Category</label>
+                <br>
+            <select id="category">
+                <option value="all">All</option>
+                <option value="shirts">Shirts</option>
+                <option value="sweatShirts">Sweatshirts</option>
+                <option value="accessories">Accessories</option>
+            </select>
+            </form>
         </div>
-        <div class="product-container">
+        <div id="bootstrap-overrides" class="product-container">
             <div class="product-card"></div>
             <div class="product-card"></div>
             <div class="product-card"></div>
