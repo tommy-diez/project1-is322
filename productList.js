@@ -19,6 +19,21 @@ document.querySelector('#inStock').addEventListener('change', function(event){
     toggleInStock(value);
 });
 
+document.querySelector("#category").addEventListener('change', function(event) {
+    showCategory(mockDB, event.target.value);
+});
+
+document.querySelector('#sortBy').addEventListener('change', function(event){
+    let sortVal = event.target.value;
+    if(sortVal === 'name') {
+        sortByName(mockDB);
+    } else if(sortVal === 'price') {
+        sortByPrice(mockDB)
+    } else {
+        console.log("invalid sort value");
+    }
+});
+
 function generateProductCard(name, price, img, inStock) {
 
     let product = document.createElement('div');
@@ -67,12 +82,54 @@ function generateCards(results) {
 
 function toggleInStock(showInStock) {
 
+    let category = document.querySelector('#category').value;
     let filteredResults = mockDB.filter((result)=> {
         return showInStock || result.inStock;
     });
 
-    generateCards(filteredResults);
+    showCategory(filteredResults, category);
 
+}
+
+function showCategory(results, category) {
+
+    if(category === 'all') {
+        generateCards(results);
+        return;
+    }
+
+    let sortedResults = results.filter((product)=> {
+        return product.category === category;
+    });
+    generateCards(sortedResults);
+
+}
+
+function sortByName(results){
+
+    let sortedResults = results.sort((a, b)=> {
+        let nameA = a.name.toUpperCase();
+        let nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+            return false;
+        }
+        if (nameA > nameB) {
+            return true;
+        }
+    });
+
+    let category = document.querySelector('#category').value;
+    showCategory(sortedResults, category);
+
+}
+
+function sortByPrice(results) {
+    let sortedResults = results.sort(function (a, b) {
+        return a['price'] - b['price'];
+    });
+
+    let category = document.querySelector('#category').value;
+    showCategory(sortedResults, category);
 }
 
 generateCards(mockDB);
